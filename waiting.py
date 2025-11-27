@@ -53,6 +53,8 @@ class Waiting2AM(AtomicDEVS):
 
     def outputFnc(self):
         state = self.state.get()
+        
+        print(f"[Waiting] State: {state}, Current: {self.current}, Queue: {self.queue}, m2: {self.m2}")
 
         if state == "ORDER" and self.current:
             return {self.out_order: self.current}
@@ -167,6 +169,9 @@ class Waiting4AM(AtomicDEVS):
 
     def outputFnc(self):
         state = self.state.get()
+        
+        print(f"[Waiting] State: {state}, Current: {self.current}, Queue: {self.queue}, m2: {self.m2}")
+        
         if state == "ORDER" and self.current:
             return {self.out_order: self.current}
         return {}

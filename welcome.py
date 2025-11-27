@@ -6,6 +6,9 @@ from pypdevs.DEVS import CoupledDEVS
 from pypdevs.simulator import Simulator
 import random
 
+import generator 
+import waiting
+import order
 # ----------------------------------------------------------------------
 # 카페 coupled 모델
 # ----------------------------------------------------------------------
@@ -14,9 +17,9 @@ class Welcome(CoupledDEVS):
         CoupledDEVS.__init__(self,name)
 
         # ----- Submodels -----
-        self.gen = GEN("GEN")
-        self.hall = HallSeatQueueCM("Hall", max2, max4)
-        self.orderworker = OrderWorkerCM(OrderWorkerCM, max_worker=5 , make_time=5.0)
+        self.gen = generator.GEN("GEN")
+        self.hall = waiting.HallSeatQueueCM("Hall", max2, max4)
+        self.orderworker = order.OrderWorkerCM("OrderWorker", max_worker=5 , make_time=5.0)
 
         self.addSubModel(self.gen)
         self.addSubModel(self.hall)

@@ -151,6 +151,7 @@ class WorkerAM(AtomicDEVS):
 
         self.ht = None            # "H2", "H4", "T"
         self.n = 0                # 주문 개수
+        self.count = 0
 
         # 포트
         self.in_order = self.addInPort("in_order")       # (HT, n)
@@ -195,6 +196,7 @@ class WorkerAM(AtomicDEVS):
             outputs = {}
             # OrderAM에게 완료 알림
             outputs[self.out_done] = ("done", self.id)
+            self.count += self.n
 
             # 손님에게 결과 전달
             if self.ht in ("H2", "H4"):
